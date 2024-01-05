@@ -57,4 +57,15 @@ class DeadlineCalculatorServiceImplTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    void reportDeadlineOnEndOfTheMonth() throws Exception {
+        LocalDateTime start = LocalDateTime.of(2024, 1, 31, 11, 25);
+        long time = 6;
+
+        LocalDateTime result = deadlineCalculatorService.calculateDeadline(start, time);
+
+        LocalDateTime expected = LocalDateTime.of(2024, 2, 1, 9, 25);
+        assertEquals(expected, result);
+    }
+
 }
